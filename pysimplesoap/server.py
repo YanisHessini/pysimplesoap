@@ -376,10 +376,10 @@ class SoapDispatcher(object):
                             l.extend(d.items())
                         parse_element(n, l, array=True, complex=True)
                         t = "tns:%s" % n
-                    elif v is None:
-                        t = 'xsd:anyType'
                     elif v in TYPE_MAP.keys():
                         t = 'xsd:%s' % TYPE_MAP[v]
+                    elif v is None:
+                        t = 'xsd:anyType'
                     else:
                         raise TypeError("unknown type %s for marshalling" % str(v))
                     e.add_attribute('type', t)
