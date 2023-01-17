@@ -376,6 +376,10 @@ class SoapDispatcher(object):
                             l.extend(d.items())
                         parse_element(n, l, array=True, complex=True)
                         t = "tns:%s" % n
+                    elif isinstance(v, dict):
+                        n = "%s%s" % (name, k)
+                        parse_element(n, v.items(), complex=True)
+                        t = "tns:%s" % n
                     elif v in TYPE_MAP.keys():
                         t = 'xsd:%s' % TYPE_MAP[v]
                     elif v is None:
